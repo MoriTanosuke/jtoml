@@ -13,6 +13,9 @@ public class TomlBaseListener implements TomlListener {
 	@Override public void enterToml_stat(TomlParser.Toml_statContext ctx) { }
 	@Override public void exitToml_stat(TomlParser.Toml_statContext ctx) { }
 
+	@Override public void enterString(TomlParser.StringContext ctx) { }
+	@Override public void exitString(TomlParser.StringContext ctx) { }
+
 	@Override public void enterValue_expr(TomlParser.Value_exprContext ctx) { }
 	@Override public void exitValue_expr(TomlParser.Value_exprContext ctx) { }
 

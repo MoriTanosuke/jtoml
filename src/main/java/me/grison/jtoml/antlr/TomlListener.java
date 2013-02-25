@@ -10,6 +10,9 @@ public interface TomlListener extends ParseTreeListener {
 	void enterToml_stat(TomlParser.Toml_statContext ctx);
 	void exitToml_stat(TomlParser.Toml_statContext ctx);
 
+	void enterString(TomlParser.StringContext ctx);
+	void exitString(TomlParser.StringContext ctx);
+
 	void enterValue_expr(TomlParser.Value_exprContext ctx);
 	void exitValue_expr(TomlParser.Value_exprContext ctx);
 
