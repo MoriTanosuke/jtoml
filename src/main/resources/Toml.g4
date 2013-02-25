@@ -6,7 +6,7 @@ toml
 
 toml_stat
   : section NEWLINE
-  | toml_assignment NEWLINE
+  | toml_assignment (comment)? NEWLINE
   | comment NEWLINE
   | NEWLINE
   ;
@@ -30,15 +30,19 @@ value_expr
 
 literal_expr
   : INT
-  | '"' WORD (WORD)+? '"'
+  | BOOLEAN
+  | DATE
+  | '"' WORD+ '"'
   ;
 
 array
-  : '[' value_expr ']'
+  : '[' value_expr+ ']'
   | literal_expr (',' literal_expr)+?
   ;
 
 WS : [ \t]+ -> skip ;
 INT : [0-9]+ ;
-WORD : [a-zA-Z0-9_-]+ ;
+BOOLEAN: ('true'|'false') ;
+WORD : [\.a-zA-Z0-9_\-&\\#\?\']+ ;
+DATE: [0-9][0-9][0-9][0-9]'-'[0-9][0-9]'-'[0-9][0-9]'T'[0-9][0-9]':'[0-9][0-9]':'[0-9][0-9]'Z' ;
 NEWLINE : '\r'?'\n' ;
