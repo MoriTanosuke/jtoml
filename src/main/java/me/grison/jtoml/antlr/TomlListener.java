@@ -10,17 +10,23 @@ public interface TomlListener extends ParseTreeListener {
 	void enterToml_stat(TomlParser.Toml_statContext ctx);
 	void exitToml_stat(TomlParser.Toml_statContext ctx);
 
+	void enterDate(TomlParser.DateContext ctx);
+	void exitDate(TomlParser.DateContext ctx);
+
 	void enterString(TomlParser.StringContext ctx);
 	void exitString(TomlParser.StringContext ctx);
 
-	void enterValue_expr(TomlParser.Value_exprContext ctx);
-	void exitValue_expr(TomlParser.Value_exprContext ctx);
-
-	void enterToml_assignment(TomlParser.Toml_assignmentContext ctx);
-	void exitToml_assignment(TomlParser.Toml_assignmentContext ctx);
-
 	void enterToml(TomlParser.TomlContext ctx);
 	void exitToml(TomlParser.TomlContext ctx);
+
+	void enterList(TomlParser.ListContext ctx);
+	void exitList(TomlParser.ListContext ctx);
+
+	void enterBoolean(TomlParser.BooleanContext ctx);
+	void exitBoolean(TomlParser.BooleanContext ctx);
+
+	void enterInteger(TomlParser.IntegerContext ctx);
+	void exitInteger(TomlParser.IntegerContext ctx);
 
 	void enterComment(TomlParser.CommentContext ctx);
 	void exitComment(TomlParser.CommentContext ctx);

@@ -13,17 +13,23 @@ public class TomlBaseListener implements TomlListener {
 	@Override public void enterToml_stat(TomlParser.Toml_statContext ctx) { }
 	@Override public void exitToml_stat(TomlParser.Toml_statContext ctx) { }
 
+	@Override public void enterDate(TomlParser.DateContext ctx) { }
+	@Override public void exitDate(TomlParser.DateContext ctx) { }
+
 	@Override public void enterString(TomlParser.StringContext ctx) { }
 	@Override public void exitString(TomlParser.StringContext ctx) { }
 
-	@Override public void enterValue_expr(TomlParser.Value_exprContext ctx) { }
-	@Override public void exitValue_expr(TomlParser.Value_exprContext ctx) { }
-
-	@Override public void enterToml_assignment(TomlParser.Toml_assignmentContext ctx) { }
-	@Override public void exitToml_assignment(TomlParser.Toml_assignmentContext ctx) { }
-
 	@Override public void enterToml(TomlParser.TomlContext ctx) { }
 	@Override public void exitToml(TomlParser.TomlContext ctx) { }
+
+	@Override public void enterList(TomlParser.ListContext ctx) { }
+	@Override public void exitList(TomlParser.ListContext ctx) { }
+
+	@Override public void enterBoolean(TomlParser.BooleanContext ctx) { }
+	@Override public void exitBoolean(TomlParser.BooleanContext ctx) { }
+
+	@Override public void enterInteger(TomlParser.IntegerContext ctx) { }
+	@Override public void exitInteger(TomlParser.IntegerContext ctx) { }
 
 	@Override public void enterComment(TomlParser.CommentContext ctx) { }
 	@Override public void exitComment(TomlParser.CommentContext ctx) { }

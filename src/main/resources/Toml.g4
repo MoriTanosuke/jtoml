@@ -20,32 +20,27 @@ comment
   ;
 
 toml_assignment
-  : WORD ' '* '=' ' '* value_expr
-  ;
-
-value_expr
-  : array
-  | literal_expr
+  : WORD ' '* '=' ' '* INT         # Integer
+  | WORD ' '* '=' ' '* BOOLEAN     # Boolean
+  | WORD ' '* '=' ' '* DATE        # Date
+  | WORD ' '* '=' ' '* STRING      # String
+  | WORD ' '* '=' ' '* array       # List
   ;
 
 literal_expr
   : INT
   | BOOLEAN
   | DATE
-  | string
-  ;
-
-string
-  : '"' WORD (' ' WORD)* '"'
+  | STRING
   ;
 
 array
-  : '[' ' '* value_expr (',' ' '? value_expr)* ' '* ']'
-  | '[' ' '* literal_expr (',' ' '? literal_expr)* ' '* ']'
+  : '[' ' '* (array|literal_expr) ' '* (',' ' '* (array|literal_expr))* ' '* ']'
   ;
 
 INT : [0-9]+ ;
 BOOLEAN: ('true'|'false') ;
 WORD : [\.a-zA-Z0-9_\-&\\#\?\']+ ;
+STRING : '"' WORD (' ' WORD)* '"' ;
 DATE: [0-9][0-9][0-9][0-9]'-'[0-9][0-9]'-'[0-9][0-9]'T'[0-9][0-9]':'[0-9][0-9]':'[0-9][0-9]'Z' ;
 NEWLINE : '\r'?'\n' ;

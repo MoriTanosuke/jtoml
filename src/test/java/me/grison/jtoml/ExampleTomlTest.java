@@ -5,12 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,12 +15,12 @@ import org.junit.Test;
  * 
  * @author $Author: Johannes Bergmann$
  */
-public class ExampleTomlTest {
-    private static Toml toml;
+public class ExampleTomlTest extends BaseTomlTest {
+    private static SimpleToml toml;
 
     @BeforeClass
     public static void parseExampleFile() throws FileNotFoundException {
-        toml = new Toml();
+        toml = new SimpleToml();
         String exampleToml = Util.FileToString.read(new File(toml.getClass()
                 .getResource("/example.toml").getFile()));
         toml.parseString(exampleToml);
@@ -125,17 +119,5 @@ public class ExampleTomlTest {
                 createList("gamma", "delta"),
                 createList(Integer.valueOf(1), Integer.valueOf(2))),
                 toml.getList("clients.data"));
-    }
-
-    private static Calendar createCalendar(String pattern, String value)
-            throws ParseException {
-        Date date = new SimpleDateFormat(pattern).parse(value);
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(date);
-        return calendar;
-    }
-
-    private static <T> List<T> createList(T... elements) {
-        return Arrays.<T> asList(elements);
     }
 }

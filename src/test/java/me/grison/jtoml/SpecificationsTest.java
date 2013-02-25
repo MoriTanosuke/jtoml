@@ -14,32 +14,32 @@ public class SpecificationsTest {
 
     @Test
     public void testInteger() {
-        Toml toml = Toml.parse("foo = 42");
+        SimpleToml toml = SimpleToml.parse("foo = 42");
         assertEquals(42, toml.getInt("foo").intValue());
     }
 
     @Test
     public void testFloat() {
-        Toml toml = Toml.parse("foo = 13.37");
+        SimpleToml toml = SimpleToml.parse("foo = 13.37");
         assertEquals(13.37, toml.getFloat("foo").floatValue(), 0.00001f);
     }
 
     @Test
     public void testBoolean() {
-        Toml toml = Toml.parse("foo = true\nbar = false");
+        SimpleToml toml = SimpleToml.parse("foo = true\nbar = false");
         assertEquals(true, toml.getBoolean("foo").booleanValue());
         assertEquals(false, toml.getBoolean("bar").booleanValue());
     }
 
     @Test
     public void testString() {
-        Toml toml = Toml.parse("foo = \"Hello\\tWorld\\nI'm having \\\"!\"");
+        SimpleToml toml = SimpleToml.parse("foo = \"Hello\\tWorld\\nI'm having \\\"!\"");
         assertEquals("Hello\tWorld\nI'm having \"!", toml.getString("foo"));
     }
 
     @Test
     public void testArray() {
-        Toml toml = Toml
+        SimpleToml toml = SimpleToml
                 .parse("foo = [\n\"Hello\",\n\n\t \"World\"\n,\"Nice\"]");
         assertEquals(Arrays.asList("Hello", "World", "Nice"),
                 toml.getList("foo"));
