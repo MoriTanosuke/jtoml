@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,9 +61,10 @@ public class AntlrTomlTest extends BaseTomlTest {
         // server = "192.168.1.1"
         // ports = [ 8001, 8001, 8002 ]
         assertEquals("192.168.1.1", toml.get("database.server"));
+        List<Object> elements = toml.getList("database.ports");
         assertEquals(
                 createList(Integer.valueOf(8001), Integer.valueOf(8001),
-                        Integer.valueOf(8002)), toml.getList("database.ports"));
+                        Integer.valueOf(8002)), elements);
     }
 
     @Test

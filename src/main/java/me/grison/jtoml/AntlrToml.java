@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.TimeZone;
 
 import me.grison.jtoml.antlr.TomlBaseListener;
@@ -42,7 +44,6 @@ public class AntlrToml extends HashMap<String, Object> implements Toml {
     @Override
     public Object get(String key) {
         Object value = context.get(key);
-        System.out.println(">>>" + key  + "=" + value);
         return value;
     }
 
@@ -122,7 +123,6 @@ public class AntlrToml extends HashMap<String, Object> implements Toml {
 
         private void put(String key, Object value) {
             String sectionKey = prependSection(key);
-            System.out.println("<<<" + sectionKey + "=" + value);
             tomlContext.put(sectionKey, value);
         }
 
@@ -166,8 +166,31 @@ public class AntlrToml extends HashMap<String, Object> implements Toml {
         @Override
         public void enterList(ListContext ctx) {
             String key = ctx.WORD().getText();
-            String value = ctx.array().getText();
-            put(key, value);
+            String value = ctx.array().getText().trim();
+            // remove []
+            value = unquote(value);
+            List<Object> arr = parseArray(value);
+            put(key, arr);
+        }
+
+        private List<Object> parseArray(String value) {
+            List<Object> arr = new ArrayList<Object>();
+            StringTokenizer tokenizer = new StringTokenizer(value, ",");
+            while(tokenizer.hasMoreTokens()) {
+                String element = tokenizer.nextToken().trim();
+                if(element.startsWith("\"")) {
+                    // string
+                    arr.add(element);
+                } else if(element.startsWith("[")) {
+                    // TODO how to parse a nested array?
+                } else if(element.matches("\\d+")) {
+                    Integer valueOf = Integer.valueOf(element);
+                    arr.add(valueOf);
+                } else {
+                    System.err.println("array element could not be parsed: " + element);
+                }
+            }
+            return arr;
         }
 
         private String unquote(String string) {
