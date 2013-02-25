@@ -36,8 +36,8 @@ literal_expr
   ;
 
 array
-  : '[' value_expr+ ']'
-  | literal_expr (',' literal_expr)+?
+  : '[' value_expr (',' value_expr)* ']'
+  | '[' literal_expr (',' literal_expr)* ']'
   ;
 
 WS : [ \t]+ -> skip ;

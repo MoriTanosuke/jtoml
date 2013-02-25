@@ -345,20 +345,24 @@ public class TomlParser extends Parser {
 		enterRule(_localctx, 10, RULE_value_expr);
 		try {
 			setState(53);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case 3:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(51); array();
 				}
 				break;
-
-			case 2:
+			case 6:
+			case INT:
+			case BOOLEAN:
+			case DATE:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(52); literal_expr();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -486,60 +490,53 @@ public class TomlParser extends Parser {
 		enterRule(_localctx, 14, RULE_array);
 		int _la;
 		try {
-			int _alt;
-			setState(82);
-			switch (_input.LA(1)) {
-			case 3:
+			setState(89);
+			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(67); match(3);
-				setState(69); 
+				setState(68); value_expr();
+				setState(73);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				do {
+				while (_la==2) {
 					{
 					{
-					setState(68); value_expr();
+					setState(69); match(2);
+					setState(70); value_expr();
 					}
 					}
-					setState(71); 
+					setState(75);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 3) | (1L << 6) | (1L << INT) | (1L << BOOLEAN) | (1L << DATE))) != 0) );
-				setState(73); match(1);
+				}
+				setState(76); match(1);
 				}
 				break;
-			case 6:
-			case INT:
-			case BOOLEAN:
-			case DATE:
+
+			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(75); literal_expr();
-				setState(78); 
+				setState(78); match(3);
+				setState(79); literal_expr();
+				setState(84);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
-				do {
-					switch (_alt) {
-					case 1+1:
-						{
-						{
-						setState(76); match(2);
-						setState(77); literal_expr();
-						}
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
+				_la = _input.LA(1);
+				while (_la==2) {
+					{
+					{
+					setState(80); match(2);
+					setState(81); literal_expr();
 					}
-					setState(80); 
+					}
+					setState(86);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
-				} while ( _alt!=1 && _alt!=-1 );
+					_la = _input.LA(1);
+				}
+				setState(87); match(1);
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -554,27 +551,29 @@ public class TomlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\2\3\16W\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t"+
+		"\2\3\16^\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t"+
 		"\t\3\2\6\2\24\n\2\r\2\16\2\25\3\3\3\3\3\3\3\3\3\3\5\3\35\n\3\3\3\3\3\3"+
 		"\3\3\3\3\3\3\3\5\3%\n\3\3\4\3\4\3\4\3\4\3\5\3\5\7\5-\n\5\f\5\16\5\60\13"+
 		"\5\3\6\3\6\3\6\3\6\3\7\3\7\5\78\n\7\3\b\3\b\3\b\3\b\3\b\6\b?\n\b\r\b\16"+
-		"\b@\3\b\5\bD\n\b\3\t\3\t\6\tH\n\t\r\t\16\tI\3\t\3\t\3\t\3\t\3\t\6\tQ\n"+
-		"\t\r\t\16\tR\5\tU\n\t\3\t\3R\n\2\4\6\b\n\f\16\20\2\3\3\16\16\\\2\23\3"+
-		"\2\2\2\4$\3\2\2\2\6&\3\2\2\2\b*\3\2\2\2\n\61\3\2\2\2\f\67\3\2\2\2\16C"+
-		"\3\2\2\2\20T\3\2\2\2\22\24\5\4\3\2\23\22\3\2\2\2\24\25\3\2\2\2\25\23\3"+
-		"\2\2\2\25\26\3\2\2\2\26\3\3\2\2\2\27\30\5\6\4\2\30\31\7\16\2\2\31%\3\2"+
-		"\2\2\32\34\5\n\6\2\33\35\5\b\5\2\34\33\3\2\2\2\34\35\3\2\2\2\35\36\3\2"+
-		"\2\2\36\37\7\16\2\2\37%\3\2\2\2 !\5\b\5\2!\"\7\16\2\2\"%\3\2\2\2#%\7\16"+
-		"\2\2$\27\3\2\2\2$\32\3\2\2\2$ \3\2\2\2$#\3\2\2\2%\5\3\2\2\2&\'\7\5\2\2"+
-		"\'(\7\f\2\2()\7\3\2\2)\7\3\2\2\2*.\7\7\2\2+-\n\2\2\2,+\3\2\2\2-\60\3\2"+
-		"\2\2.,\3\2\2\2./\3\2\2\2/\t\3\2\2\2\60.\3\2\2\2\61\62\7\f\2\2\62\63\7"+
-		"\6\2\2\63\64\5\f\7\2\64\13\3\2\2\2\658\5\20\t\2\668\5\16\b\2\67\65\3\2"+
-		"\2\2\67\66\3\2\2\28\r\3\2\2\29D\7\n\2\2:D\7\13\2\2;D\7\r\2\2<>\7\b\2\2"+
-		"=?\7\f\2\2>=\3\2\2\2?@\3\2\2\2@>\3\2\2\2@A\3\2\2\2AB\3\2\2\2BD\7\b\2\2"+
-		"C9\3\2\2\2C:\3\2\2\2C;\3\2\2\2C<\3\2\2\2D\17\3\2\2\2EG\7\5\2\2FH\5\f\7"+
-		"\2GF\3\2\2\2HI\3\2\2\2IG\3\2\2\2IJ\3\2\2\2JK\3\2\2\2KL\7\3\2\2LU\3\2\2"+
-		"\2MP\5\16\b\2NO\7\4\2\2OQ\5\16\b\2PN\3\2\2\2QR\3\2\2\2RS\3\2\2\2RP\3\2"+
-		"\2\2SU\3\2\2\2TE\3\2\2\2TM\3\2\2\2U\21\3\2\2\2\f\25\34$.\67@CIRT";
+		"\b@\3\b\5\bD\n\b\3\t\3\t\3\t\3\t\7\tJ\n\t\f\t\16\tM\13\t\3\t\3\t\3\t\3"+
+		"\t\3\t\3\t\7\tU\n\t\f\t\16\tX\13\t\3\t\3\t\5\t\\\n\t\3\t\2\n\2\4\6\b\n"+
+		"\f\16\20\2\3\3\16\16c\2\23\3\2\2\2\4$\3\2\2\2\6&\3\2\2\2\b*\3\2\2\2\n"+
+		"\61\3\2\2\2\f\67\3\2\2\2\16C\3\2\2\2\20[\3\2\2\2\22\24\5\4\3\2\23\22\3"+
+		"\2\2\2\24\25\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\3\3\2\2\2\27\30\5"+
+		"\6\4\2\30\31\7\16\2\2\31%\3\2\2\2\32\34\5\n\6\2\33\35\5\b\5\2\34\33\3"+
+		"\2\2\2\34\35\3\2\2\2\35\36\3\2\2\2\36\37\7\16\2\2\37%\3\2\2\2 !\5\b\5"+
+		"\2!\"\7\16\2\2\"%\3\2\2\2#%\7\16\2\2$\27\3\2\2\2$\32\3\2\2\2$ \3\2\2\2"+
+		"$#\3\2\2\2%\5\3\2\2\2&\'\7\5\2\2\'(\7\f\2\2()\7\3\2\2)\7\3\2\2\2*.\7\7"+
+		"\2\2+-\n\2\2\2,+\3\2\2\2-\60\3\2\2\2.,\3\2\2\2./\3\2\2\2/\t\3\2\2\2\60"+
+		".\3\2\2\2\61\62\7\f\2\2\62\63\7\6\2\2\63\64\5\f\7\2\64\13\3\2\2\2\658"+
+		"\5\20\t\2\668\5\16\b\2\67\65\3\2\2\2\67\66\3\2\2\28\r\3\2\2\29D\7\n\2"+
+		"\2:D\7\13\2\2;D\7\r\2\2<>\7\b\2\2=?\7\f\2\2>=\3\2\2\2?@\3\2\2\2@>\3\2"+
+		"\2\2@A\3\2\2\2AB\3\2\2\2BD\7\b\2\2C9\3\2\2\2C:\3\2\2\2C;\3\2\2\2C<\3\2"+
+		"\2\2D\17\3\2\2\2EF\7\5\2\2FK\5\f\7\2GH\7\4\2\2HJ\5\f\7\2IG\3\2\2\2JM\3"+
+		"\2\2\2KI\3\2\2\2KL\3\2\2\2LN\3\2\2\2MK\3\2\2\2NO\7\3\2\2O\\\3\2\2\2PQ"+
+		"\7\5\2\2QV\5\16\b\2RS\7\4\2\2SU\5\16\b\2TR\3\2\2\2UX\3\2\2\2VT\3\2\2\2"+
+		"VW\3\2\2\2WY\3\2\2\2XV\3\2\2\2YZ\7\3\2\2Z\\\3\2\2\2[E\3\2\2\2[P\3\2\2"+
+		"\2\\\21\3\2\2\2\f\25\34$.\67@CKV[";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {
